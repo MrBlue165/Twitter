@@ -45,21 +45,28 @@
     </div>
 
     <div class="col-6">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Idea created Successfully
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
         <h4>Share your ideas</h4>
+        <form action="{{route("post.store")}}" method="post">
+            @csrf
         <div class="row">
             <div class="mb-3">
-                <textarea class="form-control" id="idea" rows="3"></textarea>
+                <textarea class="form-control" id="idea" rows="3" name="content"></textarea>
+                @error('content')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
             <div>
                 <button class="btn btn-dark">Share</button>
             </div>
         </div>
-
+        </form>
         <hr>
 
         <h5>Comments</h5>

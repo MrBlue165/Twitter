@@ -9,6 +9,14 @@
                             <h5 class="card-title mb-0"><a href="#">{{-- $comment['name'] --}}</a></h5>
                         </div>
                     </div>
+                    <div>
+                        <form action="{{ route('post.destroy', $post->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">X</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
             <div class="card-body">
