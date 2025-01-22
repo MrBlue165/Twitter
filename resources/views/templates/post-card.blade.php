@@ -4,11 +4,12 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-                            src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{-- $comment['name'] --}}" alt="{{-- $comment['name'] --}} Avatar">
+                            src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{-- ignore $comment['name'] --}}" alt="{{-- ignore $comment['name'] --}} Avatar">
                         <div>
-                            <h5 class="card-title mb-0"><a href="#">{{-- $comment['name'] --}}</a></h5>
+                            <h5 class="card-title mb-0"><a href="#">{{-- ignore $comment['name'] --}}</a></h5>
                         </div>
                     </div>
+                    <a href="{{ route('post.show', $post->id) }}" class="btn btn-info">Show</a>
                     <div>
                         <form action="{{ route('post.destroy', $post->id) }}" method="POST" style="display: inline;">
                             @csrf
@@ -29,10 +30,10 @@
                         <span class="fs-6 fw-light text-muted"><span class="fas fa-clock"></span> {{ $post->created_at }} hours ago</span>
                     </div>
                 </div>
-                <!-- Replies section -->
+                <!-- Replies section  dont deal with rn-->
                 <hr>
                 <div>
-                    {{--
+                    {{-- fuck this
                     @foreach($comment['replies'] as $reply)
                         <div class="px-3 py-2 bg-light rounded mb-2">
                             <strong>{{ $reply['name'] }}</strong> - {{ $reply['message'] }}

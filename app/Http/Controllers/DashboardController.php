@@ -39,7 +39,7 @@ class DashboardController extends Controller
                 'replies' => $this->generateRandomReplies()
             ]
         ];
-        $posts = Post::all();
+        $posts = Post::orderBy("created_at", "desc")->get();
         return view('dashboard', ['comments' => $comments, 'posts' => $posts]);
     }
 

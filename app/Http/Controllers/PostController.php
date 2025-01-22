@@ -22,14 +22,20 @@ class PostController extends Controller
 
         return redirect()->route('dashboard.index');
     }
-    public function destroy($id){
+    public function destroy(Post $post){
 
-        $post = Post::where('id', $id);
+
         if($post){
             $post->delete();
 
             session()->flash('success', 'Idea deleted successfully');
         }
         return redirect()->route('dashboard.index');
+    }
+    public function show(Post $post)
+    {
+
+        return view('show', compact('post'));
+
     }
 }
