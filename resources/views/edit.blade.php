@@ -52,31 +52,32 @@
             </div>
         @endif
 
-        <h4>Share your ideas</h4>
-        <form action="{{route("post.store")}}" method="post">
-            @csrf
-        <div class="row">
-            <div class="mb-3">
-                <textarea class="form-control" id="idea" rows="3" name="content"></textarea>
-                @error('content')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
-            </div>
-            <div>
-                <button class="btn btn-dark">Share</button>
-            </div>
-        </div>
-        </form>
-        <hr>
+            <h4>Edit</h4>
+            <form action="{{route("post.update", $post -> id)}}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="row">
+                    <div class="mb-3">
+                        <textarea class="form-control" id="idea" rows="3" name="content">{{ $post->content }}</textarea>
+                        @error('content')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div>
+                        <button class="btn btn-dark">Update</button>
+                    </div>
+                </div>
+            </form>
+            <hr>
 
         <h5>Comments</h5>
-            @foreach ($posts as $post)
-                @include('templates.post-card' , [
-            'showShowButton' => true,
-            'showEditButton' => false,
-            'showDeleteButton' => true
-])
-            @endforeach
+            @include('templates.post-card' , [
+                'showShowButton' => false,
+                'showEditButton' => false,
+                'showDeleteButton' => true,
+                'post' => $post
+    ])
+
 
     </div>
 

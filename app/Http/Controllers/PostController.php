@@ -38,4 +38,26 @@ class PostController extends Controller
         return view('show', compact('post'));
 
     }
+    public function edit(Post $post)
+    {
+        return view('edit', compact('post'));
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'content' => 'required|string|max:255',
+        ]);
+        // Update the post content
+        $post->content = $validatedData['content'];
+
+        // Save the changes to the database
+        $post->save();
+
+        session()->flash('success', 'Idea updated successfully');
+        // Redirect back with a success message
+        return redirect()->route('dashboard.index', $post->id);
+    }
+
 }

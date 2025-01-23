@@ -9,14 +9,26 @@
                             <h5 class="card-title mb-0"><a href="#">{{-- ignore $comment['name'] --}}</a></h5>
                         </div>
                     </div>
-                    <a href="{{ route('post.show', $post->id) }}" class="btn btn-info">Show</a>
-                    <div>
-                        <form action="{{ route('post.destroy', $post->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">X</button>
-                        </form>
-                    </div>
+                    {{-- Show Button --}}
+                    @if($showShowButton ?? true)
+                        <a href="{{ route('post.show', $post->id) }}" class="btn btn-info">Show</a>
+                    @endif
+
+                    {{-- Edit Button --}}
+                    @if($showEditButton ?? true)
+                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-info">Edit</a>
+                    @endif
+
+                    {{-- Delete Button --}}
+                    @if($showDeleteButton ?? true)
+                        <div>
+                            <form action="{{ route('post.destroy', $post->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">X</button>
+                            </form>
+                        </div>
+                    @endif
 
                 </div>
             </div>

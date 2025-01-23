@@ -53,7 +53,12 @@
         @endif
 
         <h5>Comments</h5>
-            @include('templates.post-card', ['post' => $post])
+            @include('templates.post-card' , [
+                'showShowButton' => false,
+                'showEditButton' => true,
+                'showDeleteButton' => true,
+                'post' => $post
+    ])
 
     </div>
 
