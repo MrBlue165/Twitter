@@ -57,7 +57,7 @@ class PostController extends Controller
 
         session()->flash('success', 'Idea updated successfully');
         // Redirect back with a success message
-        return redirect()->route('dashboard.index', $post->id);
+        return redirect()->route('dashboard.index');
     }
 
 }
